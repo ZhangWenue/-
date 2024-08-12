@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input {
+            display: inline;
+            width: 80px;
+        }
+        li {
+            overflow: hidden;
+        }
+        ul {
+            overflow: hidden;
+            margin: 2px;
+            padding: 0;
+            text-align: center;
+        }
+        .big {
+
+            display: flex;
+            justify-content: space-between;
+            /* text-align: center; */
+            /* margin-top: 500px; */
+            width: 730px;
+        }
+        .left {
+            background-color: gray;
+            width: 300px;
+            height: 225px;
+            margin: 0;
+            padding: 0;
+        }
+        .center {
+            width: 100px;
+            margin: 0;
+        }
+        .right {
+            background-color: gray;
+            width: 300px;
+            visibility: hidden;
+        }
+        img {
+            width: 90px;
+            height: 60px;
+        }
+        .active {
+            background-color: green;
+        }
+        .imgcenter{
+            width: 100%;
+            height: 100%;
+        }
+        .win {
+            position: absolute;
+            opacity: 0.5;
+            background-color: black;
+            width: 150px;
+            height: 112px;
+            left: 0;
+            top: 0;
+            visibility: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="big">
+        <div class="left">
+            <img src="images/1.webp" alt="#" class="imgcenter">
+            <div class="win"></div>
+        </div>
+        <div class="center">
+            <ul class="ss">
+                <li class="sss active">
+                    <img src="images/1.webp" alt="#" class="img1">
+                </li>
+                <li class="sss">
+                    <img src="images/2.webp" alt="#" class="img1">
+                </li>
+                <li class="sss">
+                    <img src="images/3.webp" alt="#" class="img1">
+                </li>
+            </ul>
+        </div>
+        <div class="right">
+        </div>
+        
+    </div>
+
+    
+
+    
+
+    <script>
+        const div1 = document.querySelector('.left')
+        const div2 = document.querySelector('.center')
+        const div3 = document.querySelector('.right')
+        const win = document.querySelector('.win')
+        const img = document.querySelector('.imgcenter')
+
+        
+        console.log(div2);
+        let timeID = null
+        function show () {
+            clearInterval(timeID)
+            div3.style.visibility = 'visible'
+        }
+        function hidden () {
+            timeID = setInterval (function () {
+                div3.style.visibility = 'hidden'
+            },20)
+        }
+        div2.addEventListener('mouseover', function(e){
+            if(e.target.tagName === 'IMG') {
+                document.querySelector('.active').classList.remove('active')
+                e.target.parentNode.classList.add('active')
+                img.src = e.target.src
+                div3.style.backgroundImage = `url(${e.target.src})`
+            }
+        })
+        div1.addEventListener('mouseenter',show)
+        div1.addEventListener('mouseleave',hidden)
+        div1.addEventListener('mousemove',function (e){
+            console.log(e.pageX); 
+            let x = e.pageX-75
+            let y = e.pageY-56
+            if(x >= 8 && x <= 158) {
+                win.style.left = x + 'px'
+                div3.style.backgroundPositionX = -2 * x + 'px'
+            }
+            if(y >= 8 && y <= 122) {
+                win.style.top = y + 'px'
+                div3.style.backgroundPositionY = -2 * y + 'px'
+            }
+            win.style.visibility = 'visible'
+            // console.log(div1.getBoundingClientRect());
+            
+            
+
+        })
+    </script>
+
+   <script>
+    const pig = [{ name:'peiq', age:6 }]
+    const [{name:uname,age}] = pig
+    console.log(uname);
+    console.log(age);
+   </script>
+
+</body>
+</html>

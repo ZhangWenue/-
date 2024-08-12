@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* * {
+            box-sizing: border-box;
+        } */
+        .box_1 {
+            width: 550px;
+            height: 400px;
+            background-color: grey;
+            overflow: hidden;
+            border: 1px;
+            position: relative;
+        }
+        .box_2 {
+            width: 540px;
+            height: 320px;
+            overflow: hidden;
+            position: absolute;
+            margin: auto;
+            left: 0;
+            right: 0;
+        }
+
+        .box_3 {
+            width: 540px;
+            height: 80px;
+            position: absolute;
+            margin: auto;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: brown;
+        }
+
+        .quan {
+            margin-top: 45px;
+            margin-left: 10px;
+            padding: 0;
+            list-style: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .quan li {
+            /* position: absolute; */
+            
+            width: 10px;
+            height: 10px;
+            background: azure;
+            border-radius: 50%;
+            margin: 4px;
+            opacity: 0.4;
+            cursor: pointer;
+        }
+
+        .quan li.active {
+            width: 12px;
+            height: 12px;
+            background: white;
+            border-radius: 50%;
+            margin: 4px;
+            opacity: 1;
+            cursor: pointer;
+        }
+
+        .bt {
+            width: 24px;
+            height: 24px;
+            top: 12px;
+            right: 48px;
+            position: absolute;
+            color: gray;
+            opacity: 0.8;
+            cursor: pointer;
+        }
+        .button1 {
+            text
+        }
+
+        .button2 {
+            right: 16px;
+        }
+        .spa {
+            color: white;
+            font-size: 18px;
+            margin: 10px;
+            top: -20px; 
+            position: absolute;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .search {
+            position: relative;
+        }
+
+        .inp {
+            margin: 10px;
+            width: 200px;
+            height: 28px;
+            position: absolute;
+            initial-value: 0;
+        }
+        
+        .inp:hover {
+            width: 280px;
+            transform: scaleX(1.2) 0.2s;
+        }
+        .kuang {
+            position: absolute;
+            top: 43px;
+            left: 11px;
+            border: 1px solid black;
+            padding: 0;
+            /* visibility: hidden; */
+        }
+        .kuang li {
+            width: 280px;
+            height: 28px;
+            margin: 0;
+            margin-left: -36px;
+            list-style-type: none;
+            
+        }
+        .kuang li:hover {
+            background-color: grey;
+            cursor: pointer;
+        }
+        
+        a {
+            margin-top: 4px;
+            color: orange;
+            text-align: left;
+            text-decoration: none;
+        }
+        .ull {
+            margin: 0;
+        }
+        .fcs {
+            visibility: visible;
+        }
+        
+        .blr {
+            visibility: hidden;
+        }
+        .sou {
+            position: absolute;
+            margin-left: 260px;
+            margin-top: 10px;
+            width: 33px;
+            height: 33px;
+        }
+
+        .zi {
+            position: absolute;
+            margin-top: 20px;
+            margin-left: 320px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box_1">
+        <div class="box_2">
+            <img src="" alt="">
+            
+        </div>
+        <div class="box_3">
+            <span class="spa"></span>
+            <ul class="quan">
+                <li>
+                    
+                </li>
+                <li>
+                    
+                </li>
+                <li>
+                    
+                </li>
+                <li>
+                    
+                </li>
+                <li>
+                    
+                </li>
+                <li>
+                    
+                </li>
+                <li>
+                    
+                </li>
+                <li>
+                    
+                </li>
+            </ul>
+            <button class="bt button1"><</button>
+            <button class="bt button2">></button>
+        </div>
+    </div>
+
+    <div class="search">
+        <input type="text" class="inp" value="小米笔记本">
+        <button class="sou"></button>
+        <div class="kuang blr">
+            <ul class="ull">
+                <li><a href="#" style="display: block;">1</a></li>
+                <li><a href="#" style="display: block;">2</a></li>
+                <li><a href="#" style="display: block;">3</a></li>
+                <li><a href="#" style="display: block;">4</a></li>
+                <li><a href="#" style="display: block;">5</a></li>
+                <li><a href="#" style="display: block;">6</a></li>
+                <li><a href="#" style="display: block;">7</a></li>
+            </ul>
+            
+        </div>
+        <div class="zi">已输入<span class="shu">0</span>字/200字</div>
+    </div>
+
+
+
+
+    <script>
+        // 1. 初始数据
+        const sliderData = [
+          {},
+          { url: './images/slider01.jpg', title: '对人类来说会不会太超前了？', color: 'rgb(100, 67, 68)' },
+          { url: './images/slider02.jpg', title: '开启剑与雪的黑暗传说！', color: 'rgb(43, 35, 26)' },
+          { url: './images/slider03.jpg', title: '真正的jo厨出现了！', color: 'rgb(36, 31, 33)' },
+          { url: './images/slider04.jpg', title: '李玉刚：让世界通过B站看到东方大国文化', color: 'rgb(139, 98, 66)' },
+          { url: './images/slider05.jpg', title: '快来分享你的寒假日常吧~', color: 'rgb(67, 90, 92)' },
+          { url: './images/slider06.jpg', title: '哔哩哔哩小年YEAH', color: 'rgb(166, 131, 143)' },
+          { url: './images/slider07.jpg', title: '一站式解决你的电脑配置问题！！！', color: 'rgb(53, 29, 25)' },
+          { url: './images/slider08.jpg', title: '谁不想和小猫咪贴贴呢！', color: 'rgb(99, 72, 114)' },
+        ]
+        let rdm = 1 
+        let img = document.querySelector('img')
+        let sp = document.querySelector('.spa')
+        let boxcolor = document.querySelector('.box_3')
+        let li = document.querySelector(`.quan li:nth-child(${rdm})`)
+        let bt1 = document.querySelector('.button1')
+        let bt2 = document.querySelector('.button2')
+        let box1 = document.querySelector('.box_1')
+        img.src = sliderData[rdm].url
+        sp.innerHTML = `<br>${sliderData[rdm].title}`
+        boxcolor.style.backgroundColor = `${sliderData[rdm].color}`
+        // console.log(li);
+        li.classList.add('active')
+        function a (){
+        if (rdm == 8 ){
+            rdm = 0
+        }
+        rdm++
+        li.classList.remove('active')
+        img = document.querySelector('img')
+        sp = document.querySelector('.spa')
+        boxcolor = document.querySelector('.box_3')
+        li = document.querySelector(`.quan li:nth-child(${rdm})`)
+        img.src = sliderData[rdm].url
+        sp.innerHTML = `<br>${sliderData[rdm].title}`
+        boxcolor.style.backgroundColor = `${sliderData[rdm].color}`
+        // console.log(li);
+        li.classList.add('active')
+        }
+        bt1.addEventListener('click',function () {
+            if(rdm == 1){
+                rdm = 0
+                a()
+                return
+            }
+            else {
+                rdm -= 2
+            a()
+            }
+        })
+        bt2.addEventListener('click',function () {
+            if(rdm > 8){
+                rdm = 0
+                a()
+                return
+            }
+            else a()
+        })
+        let timeId = setInterval(a,3000)
+        box1.addEventListener('mouseenter',function (){
+            clearInterval(timeId)
+        })
+        box1.addEventListener('mouseleave',function (){
+            clearInterval(timeId)
+            timeId = setInterval(a,3000)
+        })
+      </script>
+      <script>
+        function fa () {
+            console.log('111');
+        }
+        let input = document.querySelector('.inp')
+        let kuang = document.querySelector('.kuang')
+        let shu = document.querySelector('.shu')
+        let bt = document.querySelector('.sou')
+        console.log(kuang);
+        input.addEventListener('focus',function(){
+            console.log(input.value);
+            
+            kuang.classList.replace('blr','fcs')
+        })
+        input.addEventListener('blur',function(){
+            kuang.classList.replace('fcs','blr')
+        })
+
+        input.addEventListener('input',function(){
+            shu.innerHTML = input.value.length
+        })
+        input.addEventListener('keyup',function(e){
+            if(e.key === 'Enter') {
+                fa()
+            }
+        })
+        bt.addEventListener('click',fa)
+      </script>
+</body>
+</html>

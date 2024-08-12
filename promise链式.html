@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Promise链式调用_解决回调地狱</title>
+</head>
+
+<body>
+  <form>
+    <span>省份：</span>
+    <select class="province">
+    </select>
+    <span>城市：</span>
+    <select class="city">
+    </select>
+    <span>地区：</span>
+    <select class="area">
+    </select>
+  </form>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    axios({
+      url: 'https://hmajax.itheima.net/api/province'
+    }).then(result => {
+      const province = result.data.list
+      province.map(item => {
+        // console.log(1);
+        document.querySelector('.province').innerHTML += (`<option >${item}</option>`)
+      })
+    })
+    let province
+    document.querySelector('.province').addEventListener('change', e => {
+      console.log(e.target.value);
+      province = e.target.value
+      axios({
+        url: 'https://hmajax.itheima.net/api/city',
+        params: {
+          pname: province
+        }
+      }).then(result => {
+        const city = result.data.list
+        document.querySelector('.city').innerHTML = ''
+        city.map(item => {
+          document.querySelector('.city').innerHTML += (`<option>${item}</option>`)
+        })
+      })
+      let city
+      document.querySelector('.city').addEventListener('change', e => {
+        console.log(e.target.value);
+        city = e.target.value
+        axios({
+          url: 'https://hmajax.itheima.net/api/area',
+          params: {
+            pname: province,
+            cname: city
+          }
+        }).then(result => {
+          const area = result.data.list
+          document.querySelector('.area').innerHTML = ''
+          area.map(item => {
+            document.querySelector('.area').innerHTML += (`<option>${item}</option>`)
+          })
+
+        })
+      })
+    })
+
+
+
+
+
+  </script>
+</body>
+
+</html>

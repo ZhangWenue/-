@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css.css">
+    <link rel="stylesheet" href="../../dist/css/swiper-bundle.min.css">
+    <style>
+        html, body {
+            position: relative;
+            height: 100%;
+        }
+        body {
+            background: #eee;
+            font-family: sans-serif;
+            font-size: 14px;
+            color: #000;
+            margin: 0;
+            padding: 0;
+        }
+        .swiper-container {
+            width: 100%;
+            height: 100%;
+            background-color: rgb(179, 189, 196);
+            transition: 1s background-color 1.3s;
+            overflow: hidden;
+        }
+        .swiper-wrapper {
+            transition-delay: 1s;
+            transition-timing-function: cubic-bezier(0.5, 0, 0, 1);
+        }
+        .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            /* Center slide text vertically */
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+        }
+        .title {
+            transition-delay: 1s;
+            z-index: 10;
+        }
+        .title h3 {
+            font-weight: 700;
+            font-size: calc(55px + 54 * ((53vw + 53vh) - 520px) / 820);
+            letter-spacing: -1px;
+            color: rgba(255,255,255,0);
+            -webkit-text-stroke: 2px #fff;
+        }
+        .img-box {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            transform: scale(0.6, 0.6);
+            transition-duration: 1s;
+            transition-property: transform;
+            transition-timing-function: cubic-bezier(0.5, 0, 0, 1);
+            opacity: 0.9;
+            overflow: hidden;
+        }
+        .img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.2, 1.2) translateX(50%);
+            transition-timing-function: cubic-bezier(0.5, 0, 0, 1);
+            transition-property: transform;
+        }
+        .button-prev, .button-next {
+            transition: 0.5s;
+            outline: none;
+            position: absolute;
+            width: 140px;
+            z-index: 10;
+            top: 65vh;
+            transform: translateY(-34px);
+            cursor: pointer;
+        }
+        .button-prev {
+            left: 4vw;
+        }
+        .button-next {
+            right: 4vw;
+        }
+        .button.disabled {
+            opacity: 0.2;
+            cursor: default;
+        }
+        #arrow-svg-home {
+            transform: translateY(353px);
+        }
+        .button-next #arrow-svg-home {
+            transform: translateY(353px) rotateY(180deg);
+            transform-origin: 80px 0px 0px;
+        }
+        svg {
+            transition: 0.5s;
+        }
+        .cls-1 {
+            transition: 0.5s;
+            opacity: 0.4;
+            transform-origin: -20px 40px;
+            opacity: 1;
+        }
+        .cls-4 {
+            transition: 0.5s;
+            stroke-width: 2px;
+            stroke: #fff;
+            fill: none;
+            stroke-dasharray: 1;
+            stroke-dashoffset: 1;
+            opacity: 0.4;
+            transform-origin: 0px 0px 0px;
+        }
+        #arrow-trg {
+            transition: 0.5s;
+            fill: #fff;
+            transform: rotateY(180deg) translate(-53px, 39px);
+        }
+        #line {
+            transition: 0.5s;
+            stroke: #fff;
+            transform: translate(50px, 42px);
+        }
+        .button-prev:not(.disabled):hover svg {
+            transform: translateX(-25px);
+        }
+        .button-next:not(.disabled):hover svg {
+            transform: translateX(25px);
+        }
+        .button:not(.disabled):hover .cls-1 {
+            transform: scale(1.1);
+        }
+        .button:not(.disabled):hover .cls-4 {
+            stroke-dasharray: 2px;
+            stroke-dashoffset: 2px;
+            opacity: 1;
+        }
+        .button:not(.disabled):hover #arrow-trg {
+            transform: rotateY(180deg) translate(-37px, 39px);
+        }
+        .button:not(.disabled):hover #line {
+            transform: translate(35px, 42px) scaleX(0.33);
+        }
+        </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <div class="tab_all">
+        <div class="user">
+            <!-- <img src="" alt=""> -->
+            <ul class="tab">
+                <li class="tab_item left"><a href="#">首页</a></li>
+                <li class="tab_item left"><a href="#">注册</a></li>
+            </ul>
+        </div>
+        <div class="search">
+
+            <input type="text" class="ser">
+            <button class="sear">
+                <!-- <img src="" alt=""> -->
+            </button>
+        </div>
+        <div class="account">
+            <ul class="tab">
+                <li class="tab_item right"><a href=""><span class="nick-name"></span></a></li>
+                <li class="tab_item right"><a href="">投稿</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 侧边栏 -->
+
+    <div class="aside" style="z-index:999">
+        <div class="aside_item_top active"><img src="" alt=""><strong>返回顶部</strong></div>
+        <div class="aside_item" data-name="c1">第一部分</div>
+        <div class="aside_item" data-name="c2">第二部分</div>
+        <div class="aside_item" data-name="c3">第三部分</div>
+        <div class="aside_item" data-name="c4">第四部分</div>
+    </div>
+
+    <!-- <div>
+        <div>
+            <span>今天是</span>
+            <ul>
+                <li class="year"></li>
+                <li class="mouth"></li>
+                <li class="day"></li>
+                <li class="hour"></li>
+                <li class="minute"></li>
+                <li class="second"></li>
+            </ul>
+        </div>
+    </div> -->
+
+    <!-- 主界面 -->
+     
+    <div class="content">
+        <div class="content c1" >
+            <!-- 首页轮播图 -->
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide">
+                    <div class="title" data-swiper-parallax="-130%">
+                      <h3>Adidas NMD</h3>
+                    </div>
+                    <div class="img-box"><img src="/assets/images/img1.jpg" style="transform:translateX(0);"></div>
+                  </div>
+                  <div class="swiper-slide">
+                    <div class="title" data-swiper-parallax="-130%">
+                      <h3>Marconatto</h3>
+                    </div>
+                    <div class="img-box"><img src="/assets/images/img2.jpg"></div>
+                  </div>
+                  <div class="swiper-slide">
+                    <div class="title" data-swiper-parallax="-130%">
+                      <h3>CHANEL</h3>
+                    </div>
+                    <div class="img-box"><img src="/assets/images/img3.jpg"></div>
+                  </div>
+                </div>
+                <div class="button-prev button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 350 160 90">
+                  <g id="arrow-svg-home">
+                    <g id="circ" class="cls-1">
+                      <circle cx="42" cy="42" r="40" class="cls-4"></circle>
+                    </g>
+                    <g id="arrow">
+                      <path id="arrow-trg" d="M.983,6.929,4.447,3.464.983,0,0,.983,2.482,3.464,0,5.946Z"></path>
+                    </g>
+                    <path id="line" d="M120,0H0" class="cls-3" ></path>
+                  </g>
+                  </svg></div>
+                <!--左箭头-->
+                <div class="button-next button"> <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 350 160 90">
+                  <g id="arrow-svg-home">
+                    <g id="circ" class="cls-1">
+                      <circle  cx="42" cy="42" r="40" class="cls-4"></circle>
+                    </g>
+                    <g id="arrow">
+                      <path id="arrow-trg" d="M.983,6.929,4.447,3.464.983,0,0,.983,2.482,3.464,0,5.946Z" class="cls-2"></path>
+                    </g>
+                    <path id="line" d="M120,0H0" class="cls-3" ></path>
+                  </g>
+                  </svg></div>
+                <!--右箭头--> 
+              </div>
+        </div>
+        <div class="content c2" >2</div>
+        <div class="content c3" >3</div>
+        <div class="content c4" >4</div>
+    </div>
+
+<!-- Swiper -->
+
+<script src="../../dist\js\swiper.min.js"></script> 
+<script src="https://cdn.bootcdn.net/ajax/libs/axios/1.3.4/axios.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.2.3/js/bootstrap.min.js"></script>
+<script src="../../utils/request.js"></script>
+<script src="../../utils/auth.js"></script>
+<script src="../../lib/form-serialize.js"></script>
+<script src="test.js"></script>
+</body>
+</html>
